@@ -1,5 +1,5 @@
 # CVRPlugins
-Kirai Chan's ChilloutVR Plugins
+Kirai Chan's ChilloutVR Plugins on **BepInEx 6**
 
 ## [MenuFreeze](https://github.com/xKiraiChan/CVRPlugins/releases/latest/download/MenuFreeze.dll)
 Freeze your position when you open the menus.
