@@ -58,10 +58,11 @@ namespace com.github.xKiraiChan.CVRPlugins
         private GameObject CreateMirror()
         {
             GameObject obj = GameObject.CreatePrimitive(PrimitiveType.Quad);
-            Transform transform = obj.transform;
+            DontDestroyOnLoad(obj);
 
             Destroy(obj.GetComponent<Collider>());
 
+            Transform transform = obj.transform;
             EventHandler onScaleChanged = (sender, args) => transform.localScale = new(ScaleX.Value, ScaleY.Value);
             onScaleChanged.Invoke(null, null); // setup initial scaling
 
