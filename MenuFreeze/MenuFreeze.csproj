@@ -10,14 +10,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="ChilloutVR.GameLibs" Version="0.*-*"/>
 		<PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
 		<PackageReference Include="BepInEx.Unity" Version="6.0.0-*" IncludeAssets="compile" />
 		<PackageReference Include="UnityEngine.Modules" Version="2019.4.28" IncludeAssets="compile" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Reference Include="Assembly-CSharp">
-	    <HintPath>C:\Program Files (x86)\Steam\steamapps\common\ChilloutVR\ChilloutVR_Data\Managed\Assembly-CSharp.dll</HintPath>
-	  </Reference>
 	</ItemGroup>
 </Project>
