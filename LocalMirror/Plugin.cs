@@ -1,16 +1,13 @@
-﻿using ABI_RC.Core.InteractionSystem;
-using ABI_RC.Systems.MovementSystem;
+﻿using ABI_RC.Systems.MovementSystem;
 using BepInEx;
 using BepInEx.Configuration;
-using HarmonyLib;
 using System;
 using System.Reflection;
-using System.Security.Cryptography;
 using UnityEngine;
 
-namespace com.github.xKiraiChan.CVRPlugins
+namespace com.github.xKiraiChan.CVRPlugins.LocalMirror
 {
-    [BepInPlugin(GUID, "LocalMirror", "0.1.0")]
+    [BepInPlugin(GUID, "LocalMirror", "0.2.0")]
     public class Plugin : BaseUnityPlugin
     {
         public const string GUID = "com.github.xKiraiChan.CVRPlugins.LocalMirror";

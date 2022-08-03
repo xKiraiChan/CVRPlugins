@@ -6,7 +6,7 @@
 		<RestoreAdditionalProjectSources>
 			https://nuget.bepinex.dev/v3/index.json;
 		</RestoreAdditionalProjectSources>
-		<RootNamespace>com.github.xKiraiChan.CVRPlugins</RootNamespace>
+		<RootNamespace>com.github.xKiraiChan.CVRPlugins.MenuFreeze</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>

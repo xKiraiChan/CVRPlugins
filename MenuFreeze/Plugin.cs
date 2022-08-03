@@ -5,9 +5,9 @@ using HarmonyLib;
 using System;
 using System.Reflection;
 
-namespace com.github.xKiraiChan.CVRPlugins
+namespace com.github.xKiraiChan.CVRPlugins.MenuFreeze
 {
-    [BepInPlugin(GUID, "MenuFreeze", "0.1.0")]
+    [BepInPlugin(GUID, "MenuFreeze", "0.2.0")]
     public class Plugin : BaseUnityPlugin
     {
         public const string GUID = "com.github.xKiraiChan.CVRPlugins.MenuFreeze";
