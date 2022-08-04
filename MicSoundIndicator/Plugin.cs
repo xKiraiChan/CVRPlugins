@@ -7,6 +7,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace com.github.xKiraiChan.CVRPlugins.MicSoundIndicator
 {
@@ -26,8 +27,8 @@ namespace com.github.xKiraiChan.CVRPlugins.MicSoundIndicator
             GameObject go = new("MicSoundIndicator");
             DontDestroyOnLoad(go);
 
-            (mute = go.AddComponent<AudioSource>()).clip = LoadAudioClip("Mute.dat");
-            (unmute = go.AddComponent<AudioSource>()).clip = LoadAudioClip("Unmute.dat");
+            (mute = go.AddComponent<AudioSource>()).clip = LoadAudioClip("Mute");
+            (unmute = go.AddComponent<AudioSource>()).clip = LoadAudioClip("Unmute");
 
             volume = Config.Bind("General", "Volume", 40, "Percentage volume for the sound indicator");
             EventHandler onVolumeChanged = (_, __) => mute.volume = unmute.volume = volume.Value / 100f;
@@ -39,10 +40,18 @@ namespace com.github.xKiraiChan.CVRPlugins.MicSoundIndicator
             );
         }
 
-        private static AudioClip LoadAudioClip(string fileName)
+        private AudioClip LoadAudioClip(string name)
         {
+            string path = Config.Bind("Resources", name + "Path", "BepInEx/config/MicSoundIndicator/" + name + ".mp3").Value;
+            if (File.Exists(path))
+            {
+                WWW request = new(Path.Combine(Environment.CurrentDirectory, path));
+                while (!request.isDone) request.MoveNext();
+                return request.GetAudioClip();
+            }
+
             MemoryStream mem = new();
-            assembly.GetManifestResourceStream(GUID + ".Resources." + fileName).CopyTo(mem);
+            assembly.GetManifestResourceStream(GUID + ".Resources." + name + ".dat").CopyTo(mem);
             byte[] bytes = mem.ToArray();
             mem.Dispose();
 
@@ -50,7 +59,7 @@ namespace com.github.xKiraiChan.CVRPlugins.MicSoundIndicator
             float[] data = new float[samples];
             Buffer.BlockCopy(bytes, 0, data, 0, bytes.Length);
 
-            AudioClip clip = AudioClip.Create(fileName, samples, 2, 44100, false);
+            AudioClip clip = AudioClip.Create(name, samples, 2, 44100, false);
             clip.SetData(data, 0);
             return clip;
         }
