@@ -1,6 +1,7 @@
 ﻿using ABI_RC.Core;
 using ABI_RC.Core.Base;
 using BepInEx;
+using BepInEx.Configuration;
 using HarmonyLib;
 using System;
 using System.IO;
@@ -14,6 +15,8 @@ namespace com.github.xKiraiChan.CVRPlugins.MicSoundIndicator
     {
         public const string GUID = "com.github.xKiraiChan.CVRPlugins.MicSoundIndicator";
 
+        public ConfigEntry<int> volume;
+
         private static readonly Assembly assembly = Assembly.GetExecutingAssembly();
         private static AudioSource mute;
         private static AudioSource unmute;
@@ -25,6 +28,10 @@ namespace com.github.xKiraiChan.CVRPlugins.MicSoundIndicator
 
             (mute = go.AddComponent<AudioSource>()).clip = LoadAudioClip("Mute.dat");
             (unmute = go.AddComponent<AudioSource>()).clip = LoadAudioClip("Unmute.dat");
+
+            volume = Config.Bind("General", "Volume", 40, "Percentage volume for the sound indicator");
+            EventHandler onVolumeChanged = (_, __) => mute.volume = unmute.volume = volume.Value / 100f;
+            onVolumeChanged.Invoke(null, null);
 
             new Harmony(GUID).Patch(
                 typeof(Audio).GetMethod(nameof(Audio.SetMicrophoneActive)),
