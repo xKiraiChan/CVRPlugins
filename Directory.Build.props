@@ -3,7 +3,7 @@
 		<CVRPath>C:/Program Files (x86)/Steam/steamapps/common/ChilloutVR/</CVRPath>
 	</PropertyGroup>
 	<Target Name="BuildScripts" AfterTargets="AfterBuild">
-		<Exec Condition=" '$(OS)' == 'Windows_NT' " Command='
+		<Exec Condition=" '$(OS)' == 'Windows_NT' and '$(Configuration)' != 'MelonLoader' " Command='
 			IF NOT EXIST "$(CVRPath)/BepInEx/Plugins/xKiraiChan" (
 				MKDIR "$(CVRPath)/BepInEx/Plugins/xKiraiChan"
 			)
