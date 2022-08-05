@@ -39,5 +39,6 @@ jobs:
             MenuFreeze/bin/Release/netstandard2.0/MenuFreeze.dll
             LocalMirror/bin/Release/netstandard2.0/LocalMirror.dll
             MicSoundIndicator/bin/Release/netstandard2.0/MicSoundIndicator.dll
+            IgnoreSyncCollision/bin/Release/netstandard2.0/IgnoreSyncCollision.dll
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
