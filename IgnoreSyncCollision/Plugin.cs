@@ -8,22 +8,20 @@ using UnityEngine;
 [assembly: MelonLoader.MelonGame("Alpha Blend Interactive", "ChilloutVR")]
 #else
 using BepInEx;
+using BepInEx.Unity.Mono;
 #endif
 
 namespace com.github.xKiraiChan.CVRPlugins.IgnoreSyncCollision
 {
 #if MELONLOADER
     public class Mod : MelonLoader.MelonMod {
+        public override void OnApplicationStart()
 #else
     [BepInPlugin(GUID, "IgnoreSyncCollision", "0.1.0")]
     public class Plugin : BaseUnityPlugin
     {
         public const string GUID = "com.github.xKiraiChan.CVRPlugins.IgnoreSyncCollision";
-#endif
 
-#if MELONLOADER
-        public override void OnApplicationStart()
-#else
         private void Awake()
 #endif
         {
